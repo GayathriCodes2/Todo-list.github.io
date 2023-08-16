@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="wrapper">
+
+        <div id="Center">
+        <h2>Todo List</h2>
+        <input type="text" id="input">
+        <button>Add</button>
+    </div>
+        <div id="content"></div>
+    </div>
+
+    <script>
+        window.onload=()=>{
+            todos = JSON.parse(localStorage.getItem('input')) || []
+            todos.forEach(todo=>Print(todo))
+        }
+        let input = document.getElementById('input');
+        let list = document.getElementById('content');
+        todoList = []
+        document.querySelector('button').addEventListener('click', () => {
+            // alert(input.value)
+            
+            Print(input.value);
+            todoList.push(input.value)
+           console.log(todoList)
+            localStorage.setItem("input", JSON.stringify(todoList))
+            input.value=' '
+        })
+        function Print(todo) {
+            const para = document.createElement("p");
+            para.innerText = todo;
+            list.appendChild(para);
+            list.style.alignItems = "justify"
+        }
+    </script>
+</body>
+
+</html>
